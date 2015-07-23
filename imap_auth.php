@@ -48,16 +48,15 @@ if ( !isset( $_SESSION['user'] ) ) {
 					// Create a new user
 					$User->users[] = array( 'username' => $login, 'password' => null, 'project' => "" );
 					saveJSON( "users.php", $User->users );
-					$_SESSION['user'] = $login;
 					
 				} else {
 					
 					// Deny login, unable to create new user
 					die( formatJSEND( "error", "Unable to register new user: " . $User->username . ". Please contact your system Administrator" ) );
 				}
-			} else {
-				$_SESSION['user'] = $login;
 			}
+			
+			$_SESSION['user'] = $login;
 			
 		} else {
 			imap_close($imap);
