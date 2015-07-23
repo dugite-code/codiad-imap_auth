@@ -12,7 +12,7 @@ $IMAP_AUTH_SERVER = 'your.imap.server:port';
 $IMAP_AUTH_OPTIONS = '/tls/norsh';
 
 // Auto create new users on Authentication success?
-$autouser = true;
+$autouser = false;
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -36,6 +36,8 @@ if ( !isset( $_SESSION['user'] ) ) {
 			
 			imap_close($imap);
 			
+			$_SESSION['user'] = $login;
+			
 			$User = new User();
 			$User->username = $login;
 			
@@ -55,8 +57,6 @@ if ( !isset( $_SESSION['user'] ) ) {
 					die( formatJSEND( "error", "Unable to register new user: " . $User->username . ". Please contact your system Administrator" ) );
 				}
 			}
-			
-			$_SESSION['user'] = $login;
 			
 		} else {
 			imap_close($imap);
