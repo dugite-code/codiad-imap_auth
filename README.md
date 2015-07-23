@@ -12,7 +12,7 @@ Based off: [Codiad-LDAPExternalAuth](https://github.com/QMXTech/Codiad-LDAPExter
 
 		cp ./imap_auth.php /var/www/Codiad/
 
-3. Edit the configuration portion of imap_auth.php for your email server requirements.
+3. Edit the configuration portion of imap_auth.php to match your email server requirements.
 
 		$IMAP_AUTH_SERVER = 'your.imap.server:port';
 
