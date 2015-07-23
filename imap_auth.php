@@ -3,7 +3,7 @@
 // CONFIGURATION //
 /////////////////////////////////////////////////////////////////////////////
 
-// IMAP server to use
+// IMAP server to use eg: localhost:143
 $IMAP_AUTH_SERVER = 'your.imap.server:port';
 
 // IMAP Options: http://php.net/manual/ru/function.imap-open.php
@@ -19,10 +19,10 @@ $autouser = false;
 require_once( COMPONENTS . "/user/class.user.php" );
 
 if ( !isset( $_SESSION['user'] ) ) {
-	
+
 	// Username and password post check
 	if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
-		
+
 		$login = $_POST['username'];
 		$password = $_POST['password'];
 
@@ -31,39 +31,51 @@ if ( !isset( $_SESSION['user'] ) ) {
 		"{" . $IMAP_AUTH_SERVER . $IMAP_AUTH_OPTIONS . "}INBOX",
 		$login,
 		$password);
-		
+
 		if ($imap) {
-			
+
+			// Close IMAP connection
 			imap_close($imap);
-			
-			$_SESSION['user'] = $login;
-			
+
+			// Build User array
 			$User = new User();
 			$User->username = $login;
-			
+
 			// Check if user already exists
 			if ( $User->CheckDuplicate() ) {
-				
+
 				// Check if auto creation of users is allowed
 				if ( $autouser == true ) {
-					
+
 					// Create a new user
 					$User->users[] = array( 'username' => $login, 'password' => null, 'project' => "" );
 					saveJSON( "users.php", $User->users );
-					
+
+					// Allow login
+					$_SESSION['user'] = $login;
+
 				} else {
-					
+
 					// Deny login, unable to create new user
 					die( formatJSEND( "error", "Unable to register new user: " . $User->username . ". Please contact your system Administrator" ) );
 				}
+
+			} else {
+
+					// Allow login
+					$_SESSION['user'] = $login;
+
 			}
-			
+
 		} else {
+
+			// Close IMAP connection
 			imap_close($imap);
-			// If login fails send error message
-			die( formatJSEND( "error", "User " . $login . " does not exist within Codiad." ) );
-		}			
+
+			// Deny login, send error message
+			die( formatJSEND( "error", "Unable to login to IMAP server with username: " . $login ) );
+
+		}
 	}
-	
 }
 ?>
