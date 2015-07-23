@@ -11,6 +11,9 @@ $IMAP_AUTH_SERVER = 'your.imap.server:port';
 // Use novalidate-cert for self-signed certificates
 $IMAP_AUTH_OPTIONS = '/tls/norsh';
 
+// Auto create new users on Authentication success?
+$autouser = true;
+
 /////////////////////////////////////////////////////////////////////////////
 
 require_once( COMPONENTS . "/user/class.user.php" );
@@ -30,10 +33,34 @@ if ( !isset( $_SESSION['user'] ) ) {
 		$password);
 		
 		if ($imap) {
+			
 			imap_close($imap);
-			$_SESSION['user'] = $login;
+			
+			$User = new User();
+			$User->username = $login;
+			
+			// Check if user already exists
+			if ( $User->CheckDuplicate() ) {
+				
+				// Check if auto creation of users is allowed
+				if ( $autouser == true ) {
+					
+					// Create a new user
+					$User->users[] = array( 'username' => $login, 'password' => null, 'project' => "" );
+					saveJSON( "users.php", $User->users );
+					$_SESSION['user'] = $login;
+					
+				} else {
+					
+					// Deny login, unable to create new user
+					die( formatJSEND( "error", "Unable to register new user: " . $User->username . ". Please contact your system Administrator" ) );
+				}
+			} else {
+				$_SESSION['user'] = $login;
+			}
 			
 		} else {
+			imap_close($imap);
 			// If login fails send error message
 			die( formatJSEND( "error", "User " . $login . " does not exist within Codiad." ) );
 		}			
