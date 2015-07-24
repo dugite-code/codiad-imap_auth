@@ -10,7 +10,7 @@ apt-get install php5-imap
 php5enmod imap
 ```
 
-[or see installation instructions here](https://secure.php.net/manual/en/imap.setup.php)
+[Installation instructions sourced from here](https://secure.php.net/manual/en/imap.setup.php)
 
 ## Instalation
 1. Download imap_auth.php:
