@@ -3,6 +3,8 @@ Codiad External Authentication via IMAP
 
 Based off: [Codiad-LDAPExternalAuth](https://github.com/QMXTech/Codiad-LDAPExternalAuth/), [HTTP Authentication for Codiad](https://gist.github.com/basteln3rk/4cab14ebd990e46efaef) and [auth_rcmail](https://github.com/dugite-code/auth_rcmail)
 
+**NOTE: Requires php-imap [see installation instructions here](https://secure.php.net/manual/en/imap.setup.php)**
+
 ## Instalation
 1. Download imap_auth.php:
 
