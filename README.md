@@ -6,7 +6,7 @@ Based off: [Codiad-LDAPExternalAuth](https://github.com/QMXTech/Codiad-LDAPExter
 ## Instalation
 1. Download imap_auth.php:
 
-		wget https://github.com/dugite-code/codiad-imap_auth/blob/master/imap_auth.php
+		wget https://raw.githubusercontent.com/dugite-code/codiad-imap_auth/master/imap_auth.php
 	
 2. Copy to the root Codiad directory:
 
