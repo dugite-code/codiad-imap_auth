@@ -57,14 +57,14 @@ if ( !isset( $_SESSION['user'] ) ) {
 					die( formatJSEND( "error", "Unable to register new user: " . $User->username . ". Please contact your system Administrator" ) );
 				}
 
-				// Allow login
-				$_SESSION['user'] = $login;
-
-				// Respond by sending verification tokens on success.
-				echo formatJSEND( "success", array( 'username' => $User->username ) );
-				header( "Location: " . $_SERVER['PHP_SELF'] . "?action=verify" );
-
 			}
+			
+			// Allow login
+			$_SESSION['user'] = $login;
+
+			// Respond by sending verification tokens on success.
+			echo formatJSEND( "success", array( 'username' => $User->username ) );
+			header( "Location: " . $_SERVER['PHP_SELF'] . "?action=verify" );
 
 		} else {
 
