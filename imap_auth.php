@@ -51,19 +51,18 @@ if ( !isset( $_SESSION['user'] ) ) {
 					$User->users[] = array( 'username' => $login, 'password' => null, 'project' => "" );
 					saveJSON( "users.php", $User->users );
 
-					// Allow login
-					$_SESSION['user'] = $login;
-
 				} else {
 
 					// Deny login, unable to create new user
 					die( formatJSEND( "error", "Unable to register new user: " . $User->username . ". Please contact your system Administrator" ) );
 				}
 
-			} else {
+				// Allow login
+				$_SESSION['user'] = $login;
 
-					// Allow login
-					$_SESSION['user'] = $login;
+				// Respond by sending verification tokens on success.
+				echo formatJSEND( "success", array( 'username' => $User->username ) );
+				header( "Location: " . $_SERVER['PHP_SELF'] . "?action=verify" );
 
 			}
 
