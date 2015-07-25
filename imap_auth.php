@@ -11,6 +11,12 @@ $IMAP_AUTH_SERVER = 'your.imap.server:port';
 // Use novalidate-cert for self-signed certificates
 $IMAP_AUTH_OPTIONS = '/tls/norsh';
 
+//////////////////////
+/// !!!WARNING!!! ////
+//////////////////////
+// DO NOT USE WITH GMAIL OR ANY OTHER IMAP SERVER YOU DO NOT DIRECTLY CONTROL
+// this would essentally make your Codiad instance "Public"
+
 // Auto create new users on Authentication success?
 $autouser = false;
 
