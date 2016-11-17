@@ -1,6 +1,6 @@
 #Codiad-IMAP_Auth
 Codiad External Authentication via IMAP
-Mirrors - [ [GitLab](https://gitlab.com/dugite-code/codiad-imap_auth) | [Bitbucket](https://bitbucket.org/dugite-code/codiad-imap_auth)|[Github](https://gitlab.com/dugite-code/codiad-imap_auth) ]
+Mirrors - [ [GitLab](https://gitlab.com/dugite-code/codiad-imap_auth) | [Bitbucket](https://bitbucket.org/dugite-code/codiad-imap_auth) | [Github](https://gitlab.com/dugite-code/codiad-imap_auth) ]
 
 Based off: [Codiad-LDAPExternalAuth](https://github.com/QMXTech/Codiad-LDAPExternalAuth/), [HTTP Authentication for Codiad](https://gist.github.com/basteln3rk/4cab14ebd990e46efaef) and auth_rcmail - [ [(GitHub)](https://github.com/dugite-code/auth_rcmail) | [(GitLab)](https://gitlab.com/dugite-code/auth_rcmail) ]
 
